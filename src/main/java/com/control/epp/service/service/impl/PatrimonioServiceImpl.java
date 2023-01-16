@@ -35,5 +35,10 @@ public class PatrimonioServiceImpl implements PatrimonioService {
 		patRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public Patrimonio findByStock() {
+		return patRepository.findByStock();
+	}
 	
 }

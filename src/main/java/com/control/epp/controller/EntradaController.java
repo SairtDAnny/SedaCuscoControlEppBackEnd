@@ -50,6 +50,10 @@ public class EntradaController {
 	
 	@PostMapping("/insert")
 	public ResponseEntity<Entrada> isnert(@RequestBody Entrada entrada){
+		/*Patrimonio stockControl = patService.findByStock();
+		Entrada cant = new Entrada();*/
+		
+		
 		return new ResponseEntity<>(entService.save(entrada), HttpStatus.CREATED);
 	}
 	

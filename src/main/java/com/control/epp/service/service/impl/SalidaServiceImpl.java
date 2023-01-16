@@ -16,10 +16,9 @@ public class SalidaServiceImpl implements SalidaService{
 	private SalidaRepository salRepository;
 	
 	
-
 	@Override
 	public List<Salida> findByColaborador(String dni) {
-		return salRepository.findOneByColaborador(dni);
+		return salRepository.listDni(dni);
 	}
 	
 	@Override
@@ -44,9 +43,9 @@ public class SalidaServiceImpl implements SalidaService{
 	}
 
 	@Override
-	public List<?> listDni(String dniColaborador) throws Exception{
+	public List<Salida> listDni(String dniColaborador) throws Exception{
 		try {
-			List<?> colabo = salRepository.listDni(dniColaborador);
+			List<Salida> colabo = salRepository.listDni(dniColaborador);
 			return colabo;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

@@ -9,7 +9,7 @@ public interface SalidaService {
 	
 	public List<Salida> findByColaborador(String dni);
 	//public Colaborador findByDniColaborador(String dni);
-	public List<?> listDni(String dniColaborador) throws Exception;
+	public List<Salida> listDni(String dniColaborador) throws Exception;
 	
 	//insert
 	public Salida save(Salida salida);

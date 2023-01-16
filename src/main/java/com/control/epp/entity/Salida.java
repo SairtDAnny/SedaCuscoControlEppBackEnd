@@ -24,9 +24,11 @@ public class Salida {
 	
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
-	@Column(name = "fechaSReno", nullable = false)
+	
+	@Column(name = "fechaSReno", nullable = true)
 	private Date fechaSReno;
-	@Column(name = "fechaTReno", nullable = false)
+	
+	@Column(name = "fechaTReno", nullable = true)
 	private Date fechaTReno;
 		
 	@Column(name = "cantidad", nullable = false)
@@ -49,13 +51,15 @@ public class Salida {
 	public Salida() {
 		super();
 	}
-	
+
 	//getter and setter
 
-	
-	
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getFecha() {
@@ -64,6 +68,22 @@ public class Salida {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public Date getFechaSReno() {
+		return fechaSReno;
+	}
+
+	public void setFechaSReno(Date fechaSReno) {
+		this.fechaSReno = fechaSReno;
+	}
+
+	public Date getFechaTReno() {
+		return fechaTReno;
+	}
+
+	public void setFechaTReno(Date fechaTReno) {
+		this.fechaTReno = fechaTReno;
 	}
 
 	public Integer getCantidad() {
@@ -82,10 +102,6 @@ public class Salida {
 		this.tipo = tipo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Patrimonio getPatrimonioSalida() {
 		return patrimonioSalida;
 	}
@@ -100,24 +116,5 @@ public class Salida {
 
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
-	}
-
-	public Date getFechaSReno() {
-		return fechaSReno;
-	}
-
-	public void setFechaSReno(Date fechaSReno) {
-		this.fechaSReno = fechaSReno;
-	}
-
-	public Date getFechaTReno() {
-		return fechaTReno;
-	}
-
-	public void setFechaTReno(Date fechaTReno) {
-		this.fechaTReno = fechaTReno;
-	}
-	
-	
-	
+	}	
 }

@@ -9,10 +9,11 @@ import org.springframework.data.repository.query.Param;
 
 import com.control.epp.entity.Salida;
 public interface SalidaRepository extends JpaRepository<Salida, Long>{
+	
 	public List<Salida> findOneByColaborador(String dni);
 	
 	
-	@Query(
+	/*@Query(
 			value = "select \r\n"
 					+ "	des_patrimonio, \r\n"
 					+ "	cantidad,\r\n"
@@ -22,14 +23,17 @@ public interface SalidaRepository extends JpaRepository<Salida, Long>{
 					+ "	from salida_patrimonio com\r\n"
 					+ "	inner join colaborador rsc ON rsc.id = colaborador_id\r\n"
 					+ "	INNER join patrimonio rsp ON rsp.id = patrimonio_id\r\n"
-					+ "	where (select colaborador.id from colaborador \r\n"
-					+ "		   where :dniColaborador = dni_colaborador) = patrimonio_id\r\n"
+					+ "	where :id = com.id\r\n"
 					+ "	order by fecha desc;", nativeQuery = true)
-	List<Salida> nativo(@Param("dniColaborador") String dniColaborador);
+	List<Salida> nativo(@Param("dniColaborador") String dniColaborador);*/
 		
 	
-	@Query(value = "select * from listar_Registro_Dni(:dniColaborador);", nativeQuery = true)
-	List<?> listDni(@Param("dniColaborador") String dniColaborador);
+	/*@Query(value = "select * from listar_Registro_Dni(:dniColaborador);", nativeQuery = true)
+	List<Salida> listDni(@Param("dniColaborador") String dniColaborador);*/
 	
-	
+	@Query(value = "select * from salida_patrimonio com\r\n"
+			+ "		inner join colaborador rsc ON rsc.id = colaborador_id\r\n"
+			+ "		INNER join patrimonio rsp ON rsp.id = patrimonio_id\r\n"
+			+ "		where :colaborador = com.colaborador_id;", nativeQuery = true)
+	List<Salida> listDni(@Param("colaborador") String colaborador);
 }

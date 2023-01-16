@@ -76,8 +76,8 @@ public class SalidaController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Salida> update(Long id, @RequestBody Salida salida){
-		
+	public ResponseEntity<Salida> update(@PathVariable Long id, @RequestBody Salida salida){
+		System.out.println("id: "+id);
 		Salida salidaEncontrada = salService.findById(id);
 		
 		if(salidaEncontrada == null) {
@@ -86,7 +86,7 @@ public class SalidaController {
 		try {
 			
 			salidaEncontrada.setFecha(salida.getFecha());
-			salidaEncontrada.setFechaSReno(salida.getFechaSReno());
+			salidaEncontrada.setFechaSReno(salida.getFechaSReno());	
 			salidaEncontrada.setFechaTReno(salida.getFechaTReno());
 			salidaEncontrada.setCantidad(salida.getCantidad());
 			salidaEncontrada.setTipo(salida.getTipo());
