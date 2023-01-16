@@ -12,17 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "Entrada_Patrimonio")
@@ -35,18 +28,33 @@ public class Entrada {
 	@Column(name = "cantidadEntrada", nullable = false)
 	private Integer cantidadEntrada;
 	
+	//@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "fechaEntrada", nullable = false)
 	private Date fechaEntrada;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "patrimonioId")
-	private Patrimonio patrimonioentrada;
+	private Patrimonio patrimonioEntrada;
+
+	
+	
+	public Entrada(Long id, Integer cantidadEntrada, Date fechaEntrada, Patrimonio patrimonioEntrada) {
+		super();
+		this.id = id;
+		this.cantidadEntrada = cantidadEntrada;
+		this.fechaEntrada = fechaEntrada;
+		this.patrimonioEntrada = patrimonioEntrada;
+	}
+
 
 	//constructor
 	public Entrada() {
 		super();
 	}
+	
 
 	//Getter and Setter
 	public Long getId() {
@@ -73,12 +81,12 @@ public class Entrada {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Patrimonio getPatrimonioentrada() {
-		return patrimonioentrada;
+	public Patrimonio getPatrimonioEntrada() {
+		return patrimonioEntrada;
 	}
 
-	public void setPatrimonioentrada(Patrimonio patrimonioentrada) {
-		this.patrimonioentrada = patrimonioentrada;
+	public void setPatrimonioEntrada(Patrimonio patrimonioEntrada) {
+		this.patrimonioEntrada = patrimonioEntrada;
 	}
 
 	

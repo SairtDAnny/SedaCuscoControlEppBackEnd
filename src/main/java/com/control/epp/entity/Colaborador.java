@@ -1,34 +1,23 @@
 package com.control.epp.entity;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "colaborador")
 public class Colaborador {
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id", length = 8, nullable = false)
+	private String id;
 	
 	@Column(name = "nombreColaborador", length = 50, nullable = false)
 	private String nombreColaborador;
@@ -36,8 +25,6 @@ public class Colaborador {
 	@Column(name = "apellidoColaborador", length = 80, nullable = false)
 	private String apellidoColaborador;
 	
-	@Column(name = "dniColaborador", length = 8, nullable = false)
-	private String dniColaborador;
 	
 	@Column(name = "cargoColaborador", length = 50, nullable = false)
 	private String cargoColaborador;
@@ -55,15 +42,6 @@ public class Colaborador {
 	}
 
 	//getter and setter
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 
 	public String getNombreColaborador() {
 		return nombreColaborador;
@@ -85,16 +63,6 @@ public class Colaborador {
 	}
 
 
-	public String getDniColaborador() {
-		return dniColaborador;
-	}
-
-
-	public void setDniColaborador(String dniColaborador) {
-		this.dniColaborador = dniColaborador;
-	}
-
-
 	public String getCargoColaborador() {
 		return cargoColaborador;
 	}
@@ -113,5 +81,16 @@ public class Colaborador {
 	public void setOficina(Oficina oficina) {
 		this.oficina = oficina;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	
+	
 		
 }

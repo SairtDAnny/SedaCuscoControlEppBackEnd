@@ -32,6 +32,11 @@ public class PatrimonioController {
 		return new ResponseEntity<>(patService.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Patrimonio> listDni(@PathVariable Long id){
+		return new ResponseEntity<>(patService.findById(id), HttpStatus.OK);
+	}
+	
 	@PostMapping("/insert")
 	public ResponseEntity<Patrimonio> insert (@RequestBody Patrimonio patrimonio){
 		return new ResponseEntity<>(patService.save(patrimonio), HttpStatus.CREATED);

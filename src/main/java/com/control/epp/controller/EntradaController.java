@@ -39,14 +39,18 @@ public class EntradaController {
 	}
 	
 	//listar patrimonio.-----------
-	@GetMapping("/patrimonioEntrda")
+	@GetMapping("/patrimonio/list")
 	public ResponseEntity<List<Patrimonio>> listPatrimonio(){
 		return new ResponseEntity<>(patService.findAll(), HttpStatus.OK);
 	}
+	@GetMapping("/{id}")
+	public ResponseEntity<Entrada> listId(@PathVariable Long id){
+		return new ResponseEntity<>(entService.findById(id), HttpStatus.OK);
+	}
 	
 	@PostMapping("/insert")
-	public ResponseEntity<Patrimonio> isnert(@RequestBody Patrimonio patrimonio){
-		return new ResponseEntity<>(patService.save(patrimonio), HttpStatus.CREATED);
+	public ResponseEntity<Entrada> isnert(@RequestBody Entrada entrada){
+		return new ResponseEntity<>(entService.save(entrada), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update/{id}")
@@ -60,7 +64,7 @@ public class EntradaController {
 		try {
 			entradaEncontrada.setCantidadEntrada(entrada.getCantidadEntrada());
 			entradaEncontrada.setFechaEntrada(entrada.getFechaEntrada());
-			entradaEncontrada.setPatrimonioentrada(entrada.getPatrimonioentrada());
+			entradaEncontrada.setPatrimonioEntrada(entrada.getPatrimonioEntrada());
 			
 			return new ResponseEntity<>(entService.save(entradaEncontrada), HttpStatus.CREATED);
 			

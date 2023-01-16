@@ -41,17 +41,34 @@ public class SalidaController {
 		return new ResponseEntity<>(salService.findAll(), HttpStatus.OK);
 	}
 	
+	//LISTAR POR DNI DE COLABORADOR 
+	@GetMapping("/dni/{dniColaborador}")
+	public ResponseEntity<?> listDni(@PathVariable String dniColaborador){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(salService.listDni(dniColaborador));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\" : \"" + e.getMessage() + "\"}"));
+		}
+	}
+	
+	
 	//listar colaborador.-----------
-	@GetMapping("/colaboradorSalida")
+	@GetMapping("/colaborador/list")
 	public ResponseEntity<List<Colaborador>> listColaborador(){
 		return new ResponseEntity<>(colService.findAll(), HttpStatus.OK);
 	}
 		
 	//listar patrimonio.-----------
-	@GetMapping("/oficinaSalida")
+	@GetMapping("/patrimonio/list")
 	public ResponseEntity<List<Patrimonio>> listPatrimonio(){
 		return new ResponseEntity<>(patseService.findAll(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Salida> listId(@PathVariable Long id){
+		return new ResponseEntity<>(salService.findById(id), HttpStatus.OK);
+	}
+	
 	
 	@PostMapping("/insert")
 	public ResponseEntity<Salida> isnert(@RequestBody Salida salida){
@@ -69,6 +86,8 @@ public class SalidaController {
 		try {
 			
 			salidaEncontrada.setFecha(salida.getFecha());
+			salidaEncontrada.setFechaSReno(salida.getFechaSReno());
+			salidaEncontrada.setFechaTReno(salida.getFechaTReno());
 			salidaEncontrada.setCantidad(salida.getCantidad());
 			salidaEncontrada.setTipo(salida.getTipo());
 			salidaEncontrada.setPatrimonioSalida(salida.getPatrimonioSalida());

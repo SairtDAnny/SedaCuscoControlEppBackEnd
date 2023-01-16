@@ -47,7 +47,6 @@ public class OficinaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		try {
-			oficinaEncontrada.setNumOficina(oficina.getDesOficina());
 			oficinaEncontrada.setDesOficina(oficina.getDesOficina());
 			
 			return new ResponseEntity<>(ofiService.save(oficinaEncontrada), HttpStatus.CREATED);

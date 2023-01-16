@@ -15,6 +15,13 @@ public class SalidaServiceImpl implements SalidaService{
 	@Autowired
 	private SalidaRepository salRepository;
 	
+	
+
+	@Override
+	public List<Salida> findByColaborador(String dni) {
+		return salRepository.findOneByColaborador(dni);
+	}
+	
 	@Override
 	public Salida save(Salida salida) {
 		return salRepository.save(salida);
@@ -36,4 +43,13 @@ public class SalidaServiceImpl implements SalidaService{
 		
 	}
 
+	@Override
+	public List<?> listDni(String dniColaborador) throws Exception{
+		try {
+			List<?> colabo = salRepository.listDni(dniColaborador);
+			return colabo;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 }

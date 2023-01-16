@@ -38,14 +38,14 @@ public class ColaboradorController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Colaborador> listDni(@PathVariable Long id){
+	public ResponseEntity<Colaborador> listDni(@PathVariable String id){
 		return new ResponseEntity<>(colService.findById(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/dni/{dni}")
+	/*@GetMapping("/dni/{dni}")
 	public ResponseEntity<Colaborador> listD(@PathVariable String dni){
 		return new ResponseEntity<>(colService.findByDniColaborador(dni), HttpStatus.OK);
-	}
+	}*/
 	
 	//listar oficin.-----------
 	@GetMapping("/oficina/list")
@@ -60,7 +60,7 @@ public class ColaboradorController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Colaborador> update(@PathVariable Long id,@RequestBody Colaborador colaborador){
+	public ResponseEntity<Colaborador> update(@PathVariable String id,@RequestBody Colaborador colaborador){
 		System.out.println("LLAMA A LA FUNCION  ");
 		
 		Colaborador colaboradorEncontrado = colService.findById(id);
@@ -71,9 +71,10 @@ public class ColaboradorController {
 		System.out.println("esta bien ");
 		try {
 			System.out.println("esta bien al try ");
+			
+			colaboradorEncontrado.setId(colaborador.getId());
 			colaboradorEncontrado.setNombreColaborador(colaborador.getNombreColaborador());
 			colaboradorEncontrado.setApellidoColaborador(colaborador.getApellidoColaborador());
-			colaboradorEncontrado.setDniColaborador(colaborador.getDniColaborador());
 			colaboradorEncontrado.setCargoColaborador(colaborador.getCargoColaborador());
 			colaboradorEncontrado.setOficina(colaborador.getOficina());
 			System.out.println("guarad los datos en espera ");
@@ -86,7 +87,7 @@ public class ColaboradorController {
 	}
 	
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id){
+	public ResponseEntity<?> delete(@PathVariable String  id){
 		colService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

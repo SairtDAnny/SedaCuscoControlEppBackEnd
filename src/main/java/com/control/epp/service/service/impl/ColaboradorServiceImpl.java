@@ -14,15 +14,10 @@ public class ColaboradorServiceImpl implements ColaboradorService{
 
 	@Autowired
 	private ColaboradorRepository colRepository;
-	
+
 	@Override
 	public Colaborador save(Colaborador colaborador) {
 		return colRepository.save(colaborador);
-	}
-
-	@Override
-	public Colaborador findById(Long id) {
-		return colRepository.findById(id).orElse(null);
 	}
 
 	@Override
@@ -31,14 +26,15 @@ public class ColaboradorServiceImpl implements ColaboradorService{
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(String id) {
 		colRepository.deleteById(id);
-		
 	}
 
 	@Override
-	public Colaborador findByDniColaborador(String dni) {
-		return colRepository.findByDniColaborador	(dni);
+	public Colaborador findById(String id) {
+		return colRepository.findById(id).orElse(null);
 	}
+
+
 
 }

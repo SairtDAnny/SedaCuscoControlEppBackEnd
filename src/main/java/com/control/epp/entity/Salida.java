@@ -14,16 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-
 @Entity
 @Table(name = "salida_patrimonio")
 public class Salida {
@@ -34,6 +24,10 @@ public class Salida {
 	
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
+	@Column(name = "fechaSReno", nullable = false)
+	private Date fechaSReno;
+	@Column(name = "fechaTReno", nullable = false)
+	private Date fechaTReno;
 		
 	@Column(name = "cantidad", nullable = false)
 	private Integer cantidad;
@@ -106,6 +100,22 @@ public class Salida {
 
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
+	}
+
+	public Date getFechaSReno() {
+		return fechaSReno;
+	}
+
+	public void setFechaSReno(Date fechaSReno) {
+		this.fechaSReno = fechaSReno;
+	}
+
+	public Date getFechaTReno() {
+		return fechaTReno;
+	}
+
+	public void setFechaTReno(Date fechaTReno) {
+		this.fechaTReno = fechaTReno;
 	}
 	
 	
