@@ -42,10 +42,6 @@ public class ColaboradorController {
 		return new ResponseEntity<>(colService.findById(id), HttpStatus.OK);
 	}
 	
-	/*@GetMapping("/dni/{dni}")
-	public ResponseEntity<Colaborador> listD(@PathVariable String dni){
-		return new ResponseEntity<>(colService.findByDniColaborador(dni), HttpStatus.OK);
-	}*/
 	
 	//listar oficin.-----------
 	@GetMapping("/oficina/list")

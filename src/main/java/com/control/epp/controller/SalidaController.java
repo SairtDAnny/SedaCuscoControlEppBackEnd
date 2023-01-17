@@ -87,7 +87,7 @@ public class SalidaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		try {
-			
+	
 			salidaEncontrada.setFecha(salida.getFecha());
 			salidaEncontrada.setFechaSReno(salida.getFechaSReno());	
 			salidaEncontrada.setFechaTReno(salida.getFechaTReno());
