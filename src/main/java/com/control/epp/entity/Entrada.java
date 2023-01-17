@@ -1,6 +1,6 @@
 package com.control.epp.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,9 +29,9 @@ public class Entrada {
 	private Integer cantidadEntrada;
 	
 	//@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
+	//@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "fechaEntrada", nullable = false)
-	private Date fechaEntrada;
+	private LocalDate fechaEntrada;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -41,7 +41,7 @@ public class Entrada {
 
 	
 	
-	public Entrada(Long id, Integer cantidadEntrada, Date fechaEntrada, Patrimonio patrimonioEntrada) {
+	public Entrada(Long id, Integer cantidadEntrada, LocalDate fechaEntrada, Patrimonio patrimonioEntrada) {
 		super();
 		this.id = id;
 		this.cantidadEntrada = cantidadEntrada;
@@ -73,11 +73,11 @@ public class Entrada {
 		this.cantidadEntrada = cantidadEntrada;
 	}
 
-	public Date getFechaEntrada() {
+	public LocalDate getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(LocalDate fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 

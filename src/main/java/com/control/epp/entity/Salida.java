@@ -1,6 +1,7 @@
 package com.control.epp.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,13 +24,13 @@ public class Salida {
 	private Long id;
 	
 	@Column(name = "fecha", nullable = false)
-	private Date fecha;
+	private LocalDate fecha;
 	
 	@Column(name = "fechaSReno", nullable = true)
-	private Date fechaSReno;
+	private LocalDate fechaSReno;
 	
 	@Column(name = "fechaTReno", nullable = true)
-	private Date fechaTReno;
+	private LocalDate fechaTReno;
 		
 	@Column(name = "cantidad", nullable = false)
 	private Integer cantidad;
@@ -62,27 +63,27 @@ public class Salida {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
-	public Date getFechaSReno() {
+	public LocalDate getFechaSReno() {
 		return fechaSReno;
 	}
 
-	public void setFechaSReno(Date fechaSReno) {
+	public void setFechaSReno(LocalDate fechaSReno) {
 		this.fechaSReno = fechaSReno;
 	}
 
-	public Date getFechaTReno() {
+	public LocalDate getFechaTReno() {
 		return fechaTReno;
 	}
 
-	public void setFechaTReno(Date fechaTReno) {
+	public void setFechaTReno(LocalDate fechaTReno) {
 		this.fechaTReno = fechaTReno;
 	}
 
