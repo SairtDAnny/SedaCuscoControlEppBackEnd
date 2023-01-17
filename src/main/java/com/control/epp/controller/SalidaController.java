@@ -69,16 +69,19 @@ public class SalidaController {
 		return new ResponseEntity<>(salService.findById(id), HttpStatus.OK);
 	}
 	
+	@PutMapping("/update/{salidaId}")
+	public ResponseEntity<Salida> renovar(@PathVariable Long salidaId, @RequestBody Salida salida){
+		return new ResponseEntity<>(salService.renovacion(salidaId,salida), HttpStatus.CREATED);
+	}
 	
 	@PostMapping("/insert")
 	public ResponseEntity<Salida> isnert(@RequestBody Salida salida){
 		return new ResponseEntity<>(salService.save(salida), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/update/{id}")
+	@PutMapping("/auxiliar/{id}")
 	public ResponseEntity<Salida> update(@PathVariable Long id, @RequestBody Salida salida){
-		System.out.println("id: "+id);
-		Salida salidaEncontrada = salService.findById(id);
+		Salida salidaEncontrada = salService.renovacion(id, salida);
 		
 		if(salidaEncontrada == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

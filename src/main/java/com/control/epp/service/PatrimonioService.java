@@ -5,8 +5,7 @@ import java.util.List;
 import com.control.epp.entity.Patrimonio;
 
 public interface PatrimonioService {
-	public Patrimonio findByStock();
-	//insert
+	
 	public Patrimonio save(Patrimonio patrmonio);
 	//update
 	public Patrimonio findById(Long id);

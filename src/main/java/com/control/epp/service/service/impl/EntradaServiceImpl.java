@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.control.epp.entity.Entrada;
+import com.control.epp.entity.Patrimonio;
 import com.control.epp.repository.EntradaRepository;
+import com.control.epp.repository.PatrimonioRepository;
 import com.control.epp.service.EntradaService;
 
 @Service
@@ -14,10 +16,21 @@ public class EntradaServiceImpl implements EntradaService {
 
 	@Autowired
 	private EntradaRepository entRepository;
+	@Autowired
+	private PatrimonioRepository patrimonioRepository;
 
 	@Override
-	public Entrada save(Entrada entrada) {
-		return entRepository.save(entrada);
+	public Entrada save( Entrada entrada) {
+		try {
+			Patrimonio patrimonio=patrimonioRepository.findById(entrada.getPatrimonioEntrada().getId()).orElseThrow();
+			patrimonio.setStock(patrimonio.getStock()+entrada.getCantidadEntrada());
+			
+			entrada.setPatrimonioEntrada(patrimonio);
+			
+			return entRepository.save(entrada);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -35,7 +48,4 @@ public class EntradaServiceImpl implements EntradaService {
 		entRepository.deleteById(id);
 		
 	}
-	
-	
-	
 }

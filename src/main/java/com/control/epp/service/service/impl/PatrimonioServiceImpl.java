@@ -32,13 +32,7 @@ public class PatrimonioServiceImpl implements PatrimonioService {
 
 	@Override
 	public void delete(Long id) {
-		patRepository.deleteById(id);
-		
+		patRepository.deleteById(id);	
 	}
 
-	@Override
-	public Patrimonio findByStock() {
-		return patRepository.findByStock();
-	}
-	
 }

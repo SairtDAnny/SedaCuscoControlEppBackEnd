@@ -19,4 +19,6 @@ public interface SalidaService {
 	public List<Salida> findAll();
 	//delete
 	public void delete(Long id);
+	
+	public Salida renovacion(Long salidaId,Salida salida);
 }

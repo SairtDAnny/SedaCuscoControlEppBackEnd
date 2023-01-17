@@ -6,5 +6,5 @@ import com.control.epp.entity.Patrimonio;
 
 public interface PatrimonioRepository extends JpaRepository<Patrimonio, Long> {
 	
-	Patrimonio findByStock();
+	
 }
