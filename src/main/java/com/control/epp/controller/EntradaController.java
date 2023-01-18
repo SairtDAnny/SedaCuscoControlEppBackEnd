@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,13 +48,13 @@ public class EntradaController {
 	public ResponseEntity<Entrada> listId(@PathVariable Long id){
 		return new ResponseEntity<>(entService.findById(id), HttpStatus.OK);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/insert")
 	public ResponseEntity<Entrada> isnert(@RequestBody Entrada entrada){		
 		
 		return new ResponseEntity<>(entService.save(entrada), HttpStatus.CREATED);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Entrada> update(@PathVariable Long id, @RequestBody Entrada entrada){
 		
@@ -73,7 +74,7 @@ public class EntradaController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		entService.delete(id);

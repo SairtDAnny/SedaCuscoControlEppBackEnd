@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class PatrimonioController {
 	public ResponseEntity<Patrimonio> insert (@RequestBody Patrimonio patrimonio){
 		return new ResponseEntity<>(patService.save(patrimonio), HttpStatus.CREATED);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update")
 	public ResponseEntity<Patrimonio> update(Long id, @RequestBody Patrimonio patrimonio){
 		
@@ -62,7 +63,7 @@ public class PatrimonioController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		patService.delete(id);

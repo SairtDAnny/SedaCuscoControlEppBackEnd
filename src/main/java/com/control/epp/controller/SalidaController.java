@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,7 +79,7 @@ public class SalidaController {
 	public ResponseEntity<Salida> isnert(@RequestBody Salida salida){
 		return new ResponseEntity<>(salService.save(salida), HttpStatus.CREATED);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/auxiliar/{id}")
 	public ResponseEntity<Salida> update(@PathVariable Long id, @RequestBody Salida salida){
 		Salida salidaEncontrada = salService.renovacion(id, salida);
@@ -102,7 +103,7 @@ public class SalidaController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		salService.delete(id);

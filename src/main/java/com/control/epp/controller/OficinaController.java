@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,15 +34,16 @@ public class OficinaController {
 	public ResponseEntity<List<Oficina>> list(){
 		return new ResponseEntity<>(ofiService.findAll(),HttpStatus.OK);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/insert")
 	public ResponseEntity<Oficina> insert(@RequestBody Oficina oficina){
 		
 		return new ResponseEntity<>(ofiService.save(oficina), HttpStatus.CREATED);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Oficina> update(Long id, @RequestBody Oficina oficina){
+	public ResponseEntity<Oficina> update(@PathVariable Long id, @RequestBody Oficina oficina){
+		
 		Oficina oficinaEncontrada = ofiService.findById(id);
 		if(oficinaEncontrada == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,7 +58,7 @@ public class OficinaController {
 		}
 	}
 	
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		ofiService.delete(id);
